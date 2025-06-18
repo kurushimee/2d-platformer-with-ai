@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://clwqx2pvyvbcv"]
+[gd_scene load_steps=19 format=3 uid="uid://clwqx2pvyvbcv"]
 
 [ext_resource type="Script" uid="uid://b4s3e3vncdjau" path="res://entities/enemy/enemy.gd" id="1_3fvr7"]
 [ext_resource type="Texture2D" uid="uid://bm1lmnwugo2nf" path="res://entities/enemy/assets/slime_purple.png" id="1_im2q6"]
 [ext_resource type="Script" uid="uid://dh1mb3w1yg3iq" path="res://entities/enemy/state_machine.gd" id="3_3fvr7"]
 [ext_resource type="Script" uid="uid://dts3nj6pbrk5c" path="res://entities/enemy/states/patrol.gd" id="4_dt443"]
 [ext_resource type="Script" uid="uid://dn67q4x43ok4o" path="res://entities/enemy/states/chase.gd" id="5_4wwj3"]
+[ext_resource type="Script" uid="uid://dqelqbuumyh4x" path="res://entities/enemy/states/stun.gd" id="6_d50e0"]
+[ext_resource type="PackedScene" uid="uid://c5sl8xjyvydow" path="res://utilities/components/health/health_component.tscn" id="7_61ikd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tir2s"]
 size = Vector2(12, 12)
@@ -29,9 +31,21 @@ region = Rect2(0, 24, 24, 24)
 atlas = ExtResource("1_im2q6")
 region = Rect2(24, 24, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ksmh7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_61ikd"]
+atlas = ExtResource("1_im2q6")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_721x4"]
+atlas = ExtResource("1_im2q6")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaj7m"]
 atlas = ExtResource("1_im2q6")
 region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8fs5"]
+atlas = ExtResource("1_im2q6")
+region = Rect2(72, 48, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ksmh7"]
 animations = [{
@@ -62,10 +76,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ksmh7")
+"texture": SubResource("AtlasTexture_61ikd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_721x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaj7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8fs5")
 }],
 "loop": false,
-"name": &"hit",
+"name": &"stun",
 "speed": 10.0
 }]
 
@@ -111,3 +134,14 @@ metadata/_custom_type_script = "uid://dm4aly18rgp08"
 script = ExtResource("5_4wwj3")
 chase_speed = 150.0
 metadata/_custom_type_script = "uid://dm4aly18rgp08"
+
+[node name="Stun" type="Node" parent="StateMachine"]
+script = ExtResource("6_d50e0")
+metadata/_custom_type_script = "uid://dm4aly18rgp08"
+
+[node name="HealthComponent" parent="." instance=ExtResource("7_61ikd")]
+position = Vector2(0, -56)
+max_health = 6
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="taken_damage" from="HealthComponent" to="." method="_on_health_component_taken_damage"]

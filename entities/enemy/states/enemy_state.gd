@@ -12,6 +12,7 @@ var ground_check_cast: RayCast2D
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	enemy.damaged.connect(_on_enemy_damaged)
 
 
 func enter() -> void:
@@ -52,3 +53,7 @@ func try_chase() -> bool:
 
 func get_distance_to_player() -> float:
 	return player.global_position.distance_to(enemy.global_position)
+
+
+func _on_enemy_damaged() -> void:
+	transitioned.emit(self, &"stun")

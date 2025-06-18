@@ -15,7 +15,7 @@ extends Node2D
 
 
 func _process(delta: float) -> void:
-	if cooldown_timer < cooldown_timer:
+	if cooldown_timer < cooldown:
 		cooldown_timer += delta
 
 

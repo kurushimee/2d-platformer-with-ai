@@ -36,12 +36,10 @@ func _physics_process(delta: float) -> void:
 
 func _on_child_transitioned(state: EnemyState, new_state_name: StringName) -> void:
 	if state != current_state:
-		printerr("Invalid state transition")
 		return
 
 	var new_state := states[new_state_name.to_lower()]
 	if not new_state:
-		printerr("Trying to transition to a non-existent state")
 		return
 
 	# Clean up the previous state

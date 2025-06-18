@@ -20,6 +20,7 @@ func _process(_delta: float) -> void:
 		last_direction = direction
 
 	animated_sprite.flip_h = last_direction < 0.0
+	attack_component.scale.x = last_direction
 
 	# Play animations
 	if is_on_floor():
