@@ -12,6 +12,7 @@ signal damaged
 @export var animated_sprite: AnimatedSprite2D
 @export var wall_check_cast: RayCast2D
 @export var ground_check_cast: RayCast2D
+@export var player_check_cast : RayCast2D
 
 
 func switch_direction(direction: float) -> void:

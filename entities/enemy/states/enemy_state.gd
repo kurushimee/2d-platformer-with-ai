@@ -44,11 +44,17 @@ func try_chase() -> bool:
 	if player.is_dead:
 		return false
 
-	if get_distance_to_player() <= enemy.detection_radius:
+	if can_see_player() and get_distance_to_player() <= enemy.detection_radius:
 		transitioned.emit(self, &"chase")
 		return true
 
 	return false
+
+
+# RayCast from Enemy to the Player to see if there are any obstacles in the way
+func can_see_player() -> bool:
+	enemy.player_check_cast.target_position = player.global_position - enemy.player_check_cast.global_position
+	return not enemy.player_check_cast.is_colliding()
 
 
 func get_distance_to_player() -> float:
