@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://clwqx2pvyvbcv"]
+
+[ext_resource type="Texture2D" uid="uid://bm1lmnwugo2nf" path="res://entities/enemy/assets/slime_purple.png" id="1_im2q6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tir2s"]
+size = Vector2(12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im2q6"]
+atlas = ExtResource("1_im2q6")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fvr7"]
+atlas = ExtResource("1_im2q6")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d50e0"]
+atlas = ExtResource("1_im2q6")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt443"]
+atlas = ExtResource("1_im2q6")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wwj3"]
+atlas = ExtResource("1_im2q6")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksmh7"]
+atlas = ExtResource("1_im2q6")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ksmh7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im2q6")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_3fvr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d50e0")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt443")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wwj3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksmh7")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 10.0
+}]
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_tir2s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_ksmh7")
+animation = &"attack"
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
