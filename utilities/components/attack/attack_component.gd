@@ -24,9 +24,10 @@ func attack(direction: Vector2) -> void:
 
 	raycast.target_position = direction.normalized() * reach
 
-	if raycast.is_colliding():
-		var coll := raycast.get_collider() as HealthComponent
-
-		if coll is HealthComponent:
-			coll.take_damage(damage)
-			cooldown_timer = 0.0
+	var coll := raycast.get_collider() as Node2D
+	if coll:
+		for child in coll.get_children():
+			if child is HealthComponent:
+				child.take_damage(damage)
+				cooldown_timer = 0.0
+				return
