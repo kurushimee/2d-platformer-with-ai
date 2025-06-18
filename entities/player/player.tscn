@@ -135,7 +135,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qpopc")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
 "speed": 10.0
 }, {

@@ -19,7 +19,10 @@ func _process(_delta: float) -> void:
 	if not is_zero_approx(direction):
 		animated_sprite.flip_h = direction < 0.0
 
-	# Play animations
+	# Wait for hit animation to finish before changing it
+	if animated_sprite.animation == &"hit":
+		await animated_sprite.animation_finished
+
 	if is_on_floor():
 		if direction == 0.0:
 			animated_sprite.play(&"idle")
