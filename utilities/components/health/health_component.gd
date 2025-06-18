@@ -10,7 +10,7 @@ signal died
 var health_points: int:
 	set(value):
 		health_points = value
-		label.text = str(health_points, " HP")
+		label.text = str(clampi(health_points, 0, max_health), " HP")
 
 
 func _ready() -> void:
