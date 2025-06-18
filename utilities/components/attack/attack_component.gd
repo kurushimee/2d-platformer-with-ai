@@ -1,5 +1,5 @@
 class_name AttackComponent
-extends Node2D
+extends Area2D
 
 @export var damage: int = 1
 
@@ -9,7 +9,7 @@ extends Node2D
 ## Attack distance in pixels.
 @export var reach: float = 50.0
 
-@onready var raycast: RayCast2D = $RayCast2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 @onready var cooldown_timer: float = cooldown
 
@@ -19,14 +19,19 @@ func _process(delta: float) -> void:
 		cooldown_timer += delta
 
 
-func attack(direction: Vector2) -> void:
+func attack() -> void:
 	if cooldown_timer < cooldown: return
 
-	raycast.target_position = direction.normalized() * reach
+	collision_shape.shape.radius = reach
+	if not has_overlapping_bodies(): return
 
-	var coll := raycast.get_collider() as Node2D
-	if coll:
-		for child in coll.get_children():
+	for body in get_overlapping_bodies():
+		# Avoids attacking self if the owner is an Entity
+		if body == owner:
+			continue
+
+		# Applies damage to the first Entity within reach
+		for child in body.get_children():
 			if child is HealthComponent:
 				child.take_damage(damage)
 				cooldown_timer = 0.0

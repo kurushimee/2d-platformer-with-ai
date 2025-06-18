@@ -7,20 +7,17 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -625.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var health_component: HealthComponent = $HealthComponent
 @onready var attack_component: AttackComponent = $AttackComponent
 
 var direction: float = 0.0
-var last_direction: float = 0.0
 
 
 func _process(_delta: float) -> void:
 	direction = Input.get_axis(&"move_left", &"move_right")
-	if not is_zero_approx(direction):
-		last_direction = direction
 
-	animated_sprite.flip_h = last_direction < 0.0
-	attack_component.scale.x = last_direction
+	# Aim the sprite in movement direction
+	if not is_zero_approx(direction):
+		animated_sprite.flip_h = direction < 0.0
 
 	# Play animations
 	if is_on_floor():
@@ -56,7 +53,7 @@ func _input(event: InputEvent) -> void:
 		if velocity.y < 0.0:
 			velocity.y *= 0.5
 	elif event.is_action_pressed(&"attack"):
-		attack_component.attack(Vector2(last_direction, 0.0))
+		attack_component.attack()
 
 
 func _on_health_component_taken_damage() -> void:

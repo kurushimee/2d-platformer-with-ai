@@ -240,6 +240,7 @@ position = Vector2(-1, -100)
 [node name="AttackComponent" parent="." instance=ExtResource("4_bls4j")]
 position = Vector2(0, -16)
 damage = 2
+cooldown = 0.3
 reach = 100.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
