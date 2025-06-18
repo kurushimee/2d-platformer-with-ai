@@ -20,6 +20,10 @@ config/icon="uid://435ekgqd86ax"
 SignalBus="*res://utilities/autoload/signal_bus.gd"
 GameManager="*res://utilities/managers/game_manager.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/stretch/mode="viewport"
