@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt2ieyjwhrfix"]
+
+[ext_resource type="Script" uid="uid://dn50aa6k6q2u8" path="res://ui/hud.gd" id="1_7ihmi"]
+[ext_resource type="FontFile" uid="uid://ctlqkprg87gt2" path="res://assets/fonts/PixelOperator8.ttf" id="1_rbyyf"]
+[ext_resource type="Script" uid="uid://c130cdnrypauw" path="res://ui/enemies_killed_label.gd" id="2_276te"]
+[ext_resource type="FontFile" uid="uid://dusc8nylwnwip" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_546lt"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_7ihmi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -327.0
+offset_right = 327.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 16
+
+[node name="EnemiesKilledLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_rbyyf")
+theme_override_font_sizes/font_size = 32
+text = "ENEMIES KILLED: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_276te")
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_546lt")
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER
+press any key"
+horizontal_alignment = 1
+vertical_alignment = 1

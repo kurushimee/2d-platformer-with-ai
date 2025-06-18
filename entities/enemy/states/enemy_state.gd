@@ -44,6 +44,9 @@ func can_move_in_direction(direction: float) -> bool:
 
 # Attempts to switch to chase state if it detects the player
 func try_chase() -> bool:
+	if player.is_dead:
+		return false
+
 	if get_distance_to_player() <= enemy.detection_radius:
 		transitioned.emit(self, &"chase")
 		return true

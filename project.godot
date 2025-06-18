@@ -15,6 +15,11 @@ run/main_scene="uid://b1nxr1680wyj5"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://435ekgqd86ax"
 
+[autoload]
+
+SignalBus="*res://utilities/autoload/signal_bus.gd"
+GameManager="*res://utilities/managers/game_manager.gd"
+
 [display]
 
 window/stretch/mode="viewport"

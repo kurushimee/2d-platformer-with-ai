@@ -28,5 +28,6 @@ func _on_health_component_taken_damage() -> void:
 
 
 func _on_health_component_died() -> void:
+	SignalBus.enemy_killed.emit()
 	await animated_sprite.animation_finished
 	queue_free()

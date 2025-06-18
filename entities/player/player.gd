@@ -10,6 +10,7 @@ const JUMP_VELOCITY = -625.0
 @onready var attack_component: AttackComponent = $AttackComponent
 
 var direction: float = 0.0
+var is_dead: bool = false
 
 
 func _process(_delta: float) -> void:
@@ -64,5 +65,9 @@ func _on_health_component_taken_damage() -> void:
 
 
 func _on_health_component_died() -> void:
+	is_dead = true
+	process_mode = Node.PROCESS_MODE_DISABLED
+
 	animated_sprite.play(&"die")
+
 	player_died.emit()

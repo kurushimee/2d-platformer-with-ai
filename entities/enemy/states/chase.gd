@@ -10,7 +10,7 @@ func enter() -> void:
 
 func fixed_update(_delta: float) -> void:
 	var distance := get_distance_to_player()
-	if distance > enemy.chase_radius:
+	if player.is_dead or distance > enemy.chase_radius:
 		transitioned.emit(self, &"patrol")
 		return
 	elif distance <= enemy.attack_radius:
