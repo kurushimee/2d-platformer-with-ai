@@ -17,8 +17,9 @@ func fixed_update(_delta: float) -> void:
 		transitioned.emit(self, &"attack")
 		return
 
-	var direction := signf(player.global_position.x - enemy.global_position.x)
-	if not is_zero_approx(direction) and can_move_in_direction(direction):
+	var delta_to_player := player.global_position.x - enemy.global_position.x
+	var direction := signf(delta_to_player)
+	if not (delta_to_player > -10.0 and delta_to_player < 10.0) and can_move_in_direction(direction):
 		enemy.velocity.x = direction * chase_speed
 	else:
 		enemy.velocity.x = 0.0
