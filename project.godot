@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="2D platformer with AI"
-run/main_scene="uid://c6yhv28lscm6g"
+run/main_scene="uid://b1nxr1680wyj5"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://435ekgqd86ax"
-
-[autoload]
-
-GameManager="*res://utilities/managers/game_manager.gd"
 
 [display]
 
