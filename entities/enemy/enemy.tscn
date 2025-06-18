@@ -94,14 +94,15 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "check_casts")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "wall_check_cast", "ground_check_cast")]
 collision_layer = 2
 script = ExtResource("1_3fvr7")
 detection_radius = 250.0
 chase_radius = 500.0
 attack_radius = 32.0
 animated_sprite = NodePath("AnimatedSprite2D")
-check_casts = NodePath("CheckCasts")
+wall_check_cast = NodePath("CheckCasts/WallCheckCast")
+ground_check_cast = NodePath("CheckCasts/GroundCheckCast")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)
@@ -124,10 +125,8 @@ target_position = Vector2(28, 0)
 position = Vector2(24, -48)
 target_position = Vector2(0, 96)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("wall_check_cast", "ground_check_cast", "initial_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_3fvr7")
-wall_check_cast = NodePath("../CheckCasts/WallCheckCast")
-ground_check_cast = NodePath("../CheckCasts/GroundCheckCast")
 initial_state = NodePath("Patrol")
 
 [node name="Patrol" type="Node" parent="StateMachine"]

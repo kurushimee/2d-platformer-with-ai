@@ -6,9 +6,6 @@ signal transitioned(state: EnemyState, new_state_name: StringName)
 @onready var enemy: Enemy = get_owner()
 var player: Player
 
-var wall_check_cast: RayCast2D
-var ground_check_cast: RayCast2D
-
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -39,7 +36,7 @@ func exit() -> void:
 
 func can_move_in_direction(direction: float) -> bool:
 	enemy.switch_direction(direction)
-	return not wall_check_cast.is_colliding() and ground_check_cast.is_colliding()
+	return not enemy.wall_check_cast.is_colliding() and enemy.ground_check_cast.is_colliding()
 
 
 # Attempts to switch to chase state if it detects the player

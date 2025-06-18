@@ -18,7 +18,7 @@ func fixed_update(_delta: float) -> void:
 		return
 
 	var direction := signf(player.global_position.x - enemy.global_position.x)
-	if can_move_in_direction(direction):
+	if not is_zero_approx(direction) and can_move_in_direction(direction):
 		enemy.velocity.x = direction * chase_speed
 	else:
 		enemy.velocity.x = 0.0

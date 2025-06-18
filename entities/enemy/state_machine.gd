@@ -1,10 +1,6 @@
 extends Node
 
-@export_group("RayCasts")
-@export var wall_check_cast: RayCast2D
-@export var ground_check_cast: RayCast2D
 
-@export_group("States")
 @export var initial_state: EnemyState
 
 var current_state: EnemyState
@@ -16,8 +12,6 @@ func _ready() -> void:
 		if child is EnemyState:
 			states[child.name.to_lower()] = child
 			child.transitioned.connect(_on_child_transitioned)
-			child.wall_check_cast = wall_check_cast
-			child.ground_check_cast = ground_check_cast
 
 	if initial_state:
 		initial_state.enter()

@@ -10,12 +10,14 @@ signal damaged
 
 @export_group("Nodes")
 @export var animated_sprite: AnimatedSprite2D
-@export var check_casts: Node2D
+@export var wall_check_cast: RayCast2D
+@export var ground_check_cast: RayCast2D
 
 
 func switch_direction(direction: float) -> void:
 	animated_sprite.flip_h = direction < 0.0
-	check_casts.scale.x = direction
+	wall_check_cast.target_position.x = direction * absf(wall_check_cast.target_position.x)
+	ground_check_cast.position.x = direction * absf(ground_check_cast.position.x)
 
 
 func play_anim(anim: StringName) -> void:
