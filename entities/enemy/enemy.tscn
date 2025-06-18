@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://clwqx2pvyvbcv"]
+[gd_scene load_steps=21 format=3 uid="uid://clwqx2pvyvbcv"]
 
 [ext_resource type="Script" uid="uid://b4s3e3vncdjau" path="res://entities/enemy/enemy.gd" id="1_3fvr7"]
 [ext_resource type="Texture2D" uid="uid://bm1lmnwugo2nf" path="res://entities/enemy/assets/slime_purple.png" id="1_im2q6"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://dts3nj6pbrk5c" path="res://entities/enemy/states/patrol.gd" id="4_dt443"]
 [ext_resource type="Script" uid="uid://dn67q4x43ok4o" path="res://entities/enemy/states/chase.gd" id="5_4wwj3"]
 [ext_resource type="Script" uid="uid://dqelqbuumyh4x" path="res://entities/enemy/states/stun.gd" id="6_d50e0"]
+[ext_resource type="Script" uid="uid://dnplqt025l1na" path="res://entities/enemy/states/attack.gd" id="6_eaj7m"]
 [ext_resource type="PackedScene" uid="uid://c5sl8xjyvydow" path="res://utilities/components/health/health_component.tscn" id="7_61ikd"]
+[ext_resource type="PackedScene" uid="uid://qwe3qlan4mdv" path="res://utilities/components/attack/attack_component.tscn" id="8_721x4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tir2s"]
 size = Vector2(12, 12)
@@ -92,11 +94,14 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "check_casts")]
 collision_layer = 2
 script = ExtResource("1_3fvr7")
 detection_radius = 250.0
 chase_radius = 500.0
+attack_radius = 32.0
+animated_sprite = NodePath("AnimatedSprite2D")
+check_casts = NodePath("CheckCasts")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)
@@ -135,6 +140,11 @@ script = ExtResource("5_4wwj3")
 chase_speed = 150.0
 metadata/_custom_type_script = "uid://dm4aly18rgp08"
 
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_component")]
+script = ExtResource("6_eaj7m")
+attack_component = NodePath("../../AttackComponent")
+metadata/_custom_type_script = "uid://dm4aly18rgp08"
+
 [node name="Stun" type="Node" parent="StateMachine"]
 script = ExtResource("6_d50e0")
 metadata/_custom_type_script = "uid://dm4aly18rgp08"
@@ -142,6 +152,9 @@ metadata/_custom_type_script = "uid://dm4aly18rgp08"
 [node name="HealthComponent" parent="." instance=ExtResource("7_61ikd")]
 position = Vector2(0, -56)
 max_health = 6
+
+[node name="AttackComponent" parent="." instance=ExtResource("8_721x4")]
+reach = 32.0
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="taken_damage" from="HealthComponent" to="." method="_on_health_component_taken_damage"]

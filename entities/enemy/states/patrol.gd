@@ -4,6 +4,7 @@ extends EnemyState
 
 
 func enter() -> void:
+	enemy.play_anim(&"default")
 	enemy.velocity.x = patrol_speed
 
 

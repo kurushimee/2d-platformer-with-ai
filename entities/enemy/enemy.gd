@@ -8,8 +8,9 @@ signal damaged
 @export var chase_radius := 200.0
 @export var attack_radius := 25.0
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var check_casts: Node2D = $CheckCasts
+@export_group("Nodes")
+@export var animated_sprite: AnimatedSprite2D
+@export var check_casts: Node2D
 
 
 func switch_direction(direction: float) -> void:

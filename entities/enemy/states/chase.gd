@@ -4,9 +4,17 @@ extends EnemyState
 @export var chase_speed := 75.0
 
 
+func enter() -> void:
+	enemy.play_anim(&"default")
+
+
 func fixed_update(_delta: float) -> void:
-	if get_distance_to_player() > enemy.chase_radius:
+	var distance := get_distance_to_player()
+	if distance > enemy.chase_radius:
 		transitioned.emit(self, &"patrol")
+		return
+	elif distance <= enemy.attack_radius:
+		transitioned.emit(self, &"attack")
 		return
 
 	var direction := signf(player.global_position.x - enemy.global_position.x)
@@ -16,5 +24,3 @@ func fixed_update(_delta: float) -> void:
 		enemy.velocity.x = 0.0
 
 	enemy.move_and_slide()
-
-	try_chase()
