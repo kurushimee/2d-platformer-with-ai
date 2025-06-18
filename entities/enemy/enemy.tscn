@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://clwqx2pvyvbcv"]
+[gd_scene load_steps=14 format=3 uid="uid://clwqx2pvyvbcv"]
 
 [ext_resource type="Script" uid="uid://b4s3e3vncdjau" path="res://entities/enemy/enemy.gd" id="1_3fvr7"]
 [ext_resource type="Texture2D" uid="uid://bm1lmnwugo2nf" path="res://entities/enemy/assets/slime_purple.png" id="1_im2q6"]
 [ext_resource type="Script" uid="uid://dh1mb3w1yg3iq" path="res://entities/enemy/state_machine.gd" id="3_3fvr7"]
 [ext_resource type="Script" uid="uid://dts3nj6pbrk5c" path="res://entities/enemy/states/patrol.gd" id="4_dt443"]
+[ext_resource type="Script" uid="uid://dn67q4x43ok4o" path="res://entities/enemy/states/chase.gd" id="5_4wwj3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tir2s"]
 size = Vector2(12, 12)
@@ -71,6 +72,8 @@ animations = [{
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_3fvr7")
+detection_radius = 250.0
+chase_radius = 500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -24)
@@ -83,16 +86,28 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ksmh7")
 autoplay = "default"
 
-[node name="GroundCheckCast" type="RayCast2D" parent="."]
+[node name="CheckCasts" type="Node2D" parent="."]
+
+[node name="WallCheckCast" type="RayCast2D" parent="CheckCasts"]
+position = Vector2(0, -24)
+target_position = Vector2(28, 0)
+
+[node name="GroundCheckCast" type="RayCast2D" parent="CheckCasts"]
 position = Vector2(24, -48)
 target_position = Vector2(0, 96)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("wall_check_cast", "ground_check_cast", "initial_state")]
 script = ExtResource("3_3fvr7")
+wall_check_cast = NodePath("../CheckCasts/WallCheckCast")
+ground_check_cast = NodePath("../CheckCasts/GroundCheckCast")
 initial_state = NodePath("Patrol")
 
-[node name="Patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_check_cast")]
+[node name="Patrol" type="Node" parent="StateMachine"]
 script = ExtResource("4_dt443")
-ground_check_cast = NodePath("../../GroundCheckCast")
 patrol_speed = 100.0
+metadata/_custom_type_script = "uid://dm4aly18rgp08"
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("5_4wwj3")
+chase_speed = 150.0
 metadata/_custom_type_script = "uid://dm4aly18rgp08"
