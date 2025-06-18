@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://c6yhv28lscm6g"]
+[gd_scene load_steps=6 format=4 uid="uid://c6yhv28lscm6g"]
 
 [ext_resource type="Texture2D" uid="uid://bg50f2f28ajl3" path="res://level/assets/world_tileset.png" id="1_7lnir"]
 [ext_resource type="PackedScene" uid="uid://clwqx2pvyvbcv" path="res://entities/enemy/enemy.tscn" id="2_5gx2l"]
+[ext_resource type="PackedScene" uid="uid://b6wlbbsfiierk" path="res://utilities/world/world_boundary.tscn" id="3_qohg2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5gx2l"]
 texture = ExtResource("1_7lnir")
@@ -190,3 +191,6 @@ position = Vector2(1312, 448)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("2_5gx2l")]
 position = Vector2(1311, 0)
+
+[node name="WorldBoundary" parent="." instance=ExtResource("3_qohg2")]
+position = Vector2(0, 648)

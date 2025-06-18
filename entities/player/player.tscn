@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://toq2b6ifkfnw" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Texture2D" uid="uid://bq7f0kn3y66vx" path="res://entities/player/assets/knight.png" id="2_abrql"]
-[ext_resource type="PackedScene" uid="uid://c5sl8xjyvydow" path="res://components/health/health_component.tscn" id="3_sglur"]
-[ext_resource type="PackedScene" uid="uid://qwe3qlan4mdv" path="res://components/attack/attack_component.tscn" id="4_bls4j"]
+[ext_resource type="PackedScene" uid="uid://c5sl8xjyvydow" path="res://utilities/components/health/health_component.tscn" id="3_sglur"]
+[ext_resource type="PackedScene" uid="uid://qwe3qlan4mdv" path="res://utilities/components/attack/attack_component.tscn" id="4_bls4j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_symyc"]
 size = Vector2(13, 19)

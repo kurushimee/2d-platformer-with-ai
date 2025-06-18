@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5sl8xjyvydow"]
 
-[ext_resource type="Script" uid="uid://mpo2riecjvo0" path="res://components/health/health_component.gd" id="1_ol33d"]
+[ext_resource type="Script" uid="uid://mpo2riecjvo0" path="res://utilities/components/health/health_component.gd" id="1_ol33d"]
 [ext_resource type="FontFile" uid="uid://ctlqkprg87gt2" path="res://assets/fonts/PixelOperator8.ttf" id="2_02umq"]
 
 [node name="HealthComponent" type="Node2D"]

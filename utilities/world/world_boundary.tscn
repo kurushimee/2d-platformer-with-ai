@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6wlbbsfiierk"]
+
+[ext_resource type="Script" uid="uid://be4siaopddna1" path="res://utilities/world/world_boundary.gd" id="1_vuiq8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l5rtn"]
+
+[node name="WorldBoundary" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_vuiq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_l5rtn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
