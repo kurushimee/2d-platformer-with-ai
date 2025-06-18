@@ -228,6 +228,7 @@ scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_symyc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 3
 position = Vector2(0, -48)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ghoj8")
