@@ -154,6 +154,7 @@ position = Vector2(0, -56)
 max_health = 6
 
 [node name="AttackComponent" parent="." instance=ExtResource("8_721x4")]
+position = Vector2(0, -24)
 reach = 32.0
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
