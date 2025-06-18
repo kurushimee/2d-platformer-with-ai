@@ -69,6 +69,7 @@ animations = [{
 }]
 
 [node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(-1, 1)
 collision_layer = 2
 script = ExtResource("1_3fvr7")
 
@@ -83,16 +84,10 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ksmh7")
 autoplay = "default"
 
-[node name="GroundCheckCast" type="RayCast2D" parent="."]
-position = Vector2(24, -48)
-target_position = Vector2(0, 96)
-
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_3fvr7")
 initial_state = NodePath("Patrol")
 
-[node name="Patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_check_cast")]
+[node name="Patrol" type="Node" parent="StateMachine"]
 script = ExtResource("4_dt443")
-ground_check_cast = NodePath("../../GroundCheckCast")
-patrol_speed = 100.0
 metadata/_custom_type_script = "uid://dm4aly18rgp08"
