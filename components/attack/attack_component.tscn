@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://qwe3qlan4mdv"]
+
+[ext_resource type="Script" uid="uid://my1c5ds4vh02" path="res://components/attack/attack_component.gd" id="1_ujppt"]
+
+[node name="AttackComponent" type="Node2D"]
+script = ExtResource("1_ujppt")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+collision_mask = 2

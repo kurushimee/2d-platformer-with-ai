@@ -15,6 +15,10 @@ run/main_scene="uid://c6yhv28lscm6g"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://435ekgqd86ax"
 
+[autoload]
+
+GameManager="*res://utilities/managers/game_manager.gd"
+
 [display]
 
 window/stretch/mode="viewport"
@@ -51,6 +55,11 @@ attack={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Ground"
+2d_physics/layer_2="Entities"
 
 [rendering]
 

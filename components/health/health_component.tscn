@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5sl8xjyvydow"]
+
+[ext_resource type="Script" uid="uid://mpo2riecjvo0" path="res://components/health/health_component.gd" id="1_ol33d"]
+
+[node name="HealthComponent" type="Node2D"]
+script = ExtResource("1_ol33d")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = -11.5
+offset_right = 22.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "10 HP"
