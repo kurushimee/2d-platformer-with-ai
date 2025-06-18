@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5sl8xjyvydow"]
+[gd_scene load_steps=3 format=3 uid="uid://c5sl8xjyvydow"]
 
 [ext_resource type="Script" uid="uid://mpo2riecjvo0" path="res://components/health/health_component.gd" id="1_ol33d"]
+[ext_resource type="FontFile" uid="uid://ctlqkprg87gt2" path="res://assets/fonts/PixelOperator8.ttf" id="2_02umq"]
 
 [node name="HealthComponent" type="Node2D"]
 script = ExtResource("1_ol33d")
@@ -17,4 +18,5 @@ offset_right = 22.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_02umq")
 text = "10 HP"

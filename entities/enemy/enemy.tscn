@@ -78,7 +78,4 @@ shape = SubResource("RectangleShape2D_tir2s")
 position = Vector2(0, -48)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ksmh7")
-animation = &"attack"
 autoplay = "default"
-frame = 2
-frame_progress = 1.0
