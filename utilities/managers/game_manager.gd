@@ -6,7 +6,6 @@ var is_game_over: bool = false
 
 func _ready() -> void:
 	SignalBus.enemy_killed.connect(_on_enemy_killed)
-	get_tree().get_first_node_in_group("player").player_died.connect(_on_player_died)
 
 
 func _input(event: InputEvent) -> void:
@@ -15,6 +14,8 @@ func _input(event: InputEvent) -> void:
 
 
 func restart() -> void:
+	enemies_killed = 0
+	is_game_over = false
 	get_tree().reload_current_scene.call_deferred()
 
 
